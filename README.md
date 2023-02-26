@@ -26,3 +26,24 @@ Nesta etapa, seu grupo deverá implementar o modelo lógico relacional em um SGB
 ### Etapa 5: Dataframes em Python
 
 Nesta etapa, seu grupo deverá converter as tabelas e as consultas em dataframes e códigos Python, gerando um notebook em Python.
+
+## Configuring and Running the Project
+
+### Creating and Running the Virtual Enviroment
+
+```sh
+py -m venv .venv
+.\.venv\Scripts\activate
+```
+
+### Installing Python Modules
+
+```sh
+py -m pip install -r requirements.txt
+```
+
+### Running the project
+
+```sh
+python -m index
+```
