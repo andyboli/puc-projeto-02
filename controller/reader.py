@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def lang(key: str) -> str:
+def read_text(key: str) -> str:
     """Reads the file from assets/lang.json.
 
     Args:
@@ -10,4 +10,8 @@ def lang(key: str) -> str:
     Returns:
         str: An application text.
     """
-    return pd.read_json(path_or_buf='assets/lang.json', orient='index').to_dict()[0][key]
+    return pd.read_json(path_or_buf='assets/texts.json', orient='index').to_dict()[0][key]
+
+
+def show_text(key: str) -> None:
+    print(read_text(key), end="\n\n")

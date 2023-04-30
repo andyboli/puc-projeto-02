@@ -80,3 +80,36 @@ def restart_app_iterator():
 
 
 restart_app = restart_app_iterator()
+"""
+
+
+"""
+
+
+""" try:
+        while True:
+            try:
+                success, loading, error = next(start_app)
+                if loading:
+                    print(loading)
+                elif success:
+                    print(success)
+                elif error:
+                    print(error)
+            except StopIteration:
+                answers = inquirer.prompt(questions)
+                if answers['leave'] == 'Yes':
+                    break
+    finally:
+        while True:
+            try:
+                success, loading, error = next(restart_app)
+                if loading:
+                    print(loading)
+                elif success:
+                    print(success)
+                elif error:
+                    print(error)
+            except StopIteration:
+                break
+ """
