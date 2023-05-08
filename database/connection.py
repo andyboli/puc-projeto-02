@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import (errorcode, MySQLConnection)
 
-from controller.reader import lang
+from controller import reader
 from database.constants import (
     CONNECTION_CONFIG, DB, DB_CREATE_QUERY, DB_DROP_QUERY)
 
@@ -21,14 +21,15 @@ def open_connection():
         connection: MySQLConnection = mysql.connector.connect(
             **CONNECTION_CONFIG)
         if not connection.is_connected():
-            error = lang('open_connection_error').format(err)
+            error = reader.read_text('open_connection_error').format(err)
         server_info = connection.get_server_info()
-        success = lang('open_connection_success').format(server_info)
+        success = reader.read_text(
+            'open_connection_success').format(server_info)
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            error = lang('open_connection_crendentials_error')
+            error = reader.read_text('open_connection_crendentials_error')
         else:
-            error = lang('open_connection_error').format(err)
+            error = reader.read_text('open_connection_error').format(err)
     finally:
         return connection, success, error
 
@@ -63,12 +64,13 @@ def close_connection():
         if connection.is_connected():
             server_info = connection.get_server_info()
             connection.close()
-            success = lang('close_connection_success').format(server_info)
+            success = reader.read_text(
+                'close_connection_success').format(server_info)
         else:
-            error = lang('close_connection_error').format(
+            error = reader.read_text('close_connection_error').format(
                 errorcode.ER_NO_DB_ERROR)
     except Exception as err:
-        error = lang('close_connection_error').format(err)
+        error = reader.read_text('close_connection_error').format(err)
     finally:
         connect_mysql.close()
         return success, error
@@ -93,9 +95,9 @@ def create_database(db_name: str = DB, db_query=DB_CREATE_QUERY):
         cursor.execute(db_query)
         connection.database = db_name
         cursor.close()
-        success = lang('create_database_success').format(db_name)
+        success = reader.read_text('create_database_success').format(db_name)
     except mysql.connector.Error as err:
-        error = lang('create_database_error').format(db_name, err)
+        error = reader.read_text('create_database_error').format(db_name, err)
     finally:
         return success, error
 
@@ -118,9 +120,9 @@ def drop_database(db_name: str = DB, db_query=DB_DROP_QUERY):
         cursor = connection.cursor()
         cursor.execute(db_query.format(db_name))
         cursor.close()
-        success = lang('drop_database_success').format(db_name)
+        success = reader.read_text('drop_database_success').format(db_name)
     except mysql.connector.Error as err:
-        error = lang('drop_database_error').format(db_name, err)
+        error = reader.read_text('drop_database_error').format(db_name, err)
     finally:
         return success, error
 
@@ -143,9 +145,9 @@ def create_table(table_name: str, table_query: str):
         cursor = connection.cursor()
         cursor.execute(table_query)
         cursor.close()
-        success = lang('create_table_success').format(table_name)
+        success = reader.read_text('create_table_success').format(table_name)
     except mysql.connector.Error as err:
-        error = lang(
+        error = reader.read_text(
             'create_table_error').format(table_name, err)
     finally:
         return success, error

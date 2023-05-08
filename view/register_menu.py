@@ -1,7 +1,7 @@
 import inquirer
 from inquirer.themes import GreenPassion
 
-from controller import reader
+from controller import reader, orchestrator, mock
 from view import main_menu, meals_menu, parameters_menu, transactions_menu, utils
 
 
@@ -62,4 +62,6 @@ def build_register_menu() -> str:
         meals_menu.build_meals_menu()
     if answer == register_menu_choices["resgiter_params"] or answer == register_menu_choices["change_params"]:
         parameters_menu.build_parameters_menu()
+    if answer == register_menu_choices["create_restaurant"]:
+        orchestrator.create_restaurant()
     return main_menu.build_main_menu()

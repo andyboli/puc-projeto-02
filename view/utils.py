@@ -3,16 +3,21 @@ import os
 from pprint import pprint
 
 from controller import reader
+from view import utils
 
 menu_state = {
     'meals': [],
     'parameters': {},
     'transactions': {},
+    'created': True
 }
+
+mocked_data = None
 
 
 def build_menu_header():
-    os.system("cls")
+    if not utils.menu_state['created']:
+        os.system("cls")
     reader.show_text('menu_title')
 
 

@@ -1,5 +1,6 @@
 import inquirer
 from inquirer.themes import GreenPassion
+import sys
 
 from controller import reader
 from view import register_menu, utils
@@ -25,3 +26,5 @@ def build_main_menu() -> str:
     answer = answers[main_menu_key]
     if answer == main_menu_choices["register_restaurant"]:
         return register_menu.build_register_menu()
+    if answer == main_menu_choices["exit_app"]:
+        return sys.exit()
