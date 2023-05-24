@@ -127,17 +127,17 @@ CREATE TABLE IF NOT EXISTS `online_restaurant_management`.`transaction` (
   `value` FLOAT NOT NULL,
   `date` DATETIME NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `order_orderId` INT,
-  `stock_order_stockOrderId` INT,
+  `orderId` INT,
+  `stockOrderId` INT,
   PRIMARY KEY (`transactionId`),
-  FOREIGN KEY (`order_orderId`)
+  FOREIGN KEY (`orderId`)
 	REFERENCES  `online_restaurant_management`.`order` (`orderId`),
-  FOREIGN KEY (`stock_order_stockOrderId`)
+  FOREIGN KEY (`stockOrderId`)
     REFERENCES  `online_restaurant_management`.`stock_order` (`stockOrderId`));
 
 ####### REQUISITO FUNCIONAL ########
 #7 Criar transações financeiras de entradas e saídas do fluxo de caixa.    
-INSERT INTO `online_restaurant_management`.`transaction` (value, date, name, order_orderId, stock_order_stockOrderId)
+INSERT INTO `online_restaurant_management`.`transaction` (value, date, name, orderId, stockOrderId)
 VALUES 
 (100000, '2023-05-15 22:00:35', 'Initial Amount', NULL, NULL),(-8000, '2023-05-15 15:00:35', 'Rental', NULL, NULL),
 (-20000, '2023-05-15 22:01:35', 'Employees Salaries Amount', NULL, NULL),
