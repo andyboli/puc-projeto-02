@@ -22,7 +22,8 @@ def build_meals_menu():
     categories = api.get_meals_categories()
     selected_categories = inquirer.prompt(
         [inquirer.Checkbox(select_categories_key,
-                           message=reader.read_text("menu_meals_categories"),
+                           message=reader.read_text(
+                               "menu_meals_categories"),
                            choices=categories)],
         theme=GreenPassion())[select_categories_key]
     meals = list(functools.reduce(join_meals,
@@ -51,9 +52,9 @@ def build_meals_menu():
             "menu_meals_qnt"),
         validate=utils.validate_number),
         inquirer.Text(
-        'meals_ideal_qnt',
+        'meals_lowest_qnt',
         message=reader.read_text(
-            "menu_meals_min_qnt"),
+            "menu_meals_lowest_qnt"),
         validate=utils.validate_number
     )]
     answers = inquirer.prompt(
@@ -61,6 +62,9 @@ def build_meals_menu():
     filled_selected_meals = list(
         map(lambda meal: {**meal,
                           "sellerPrice": answers["sellerPrice-" + meal['mealId']],
-                          "costPrice": answers["costPrice-" + meal['mealId']]}, selected_meals))
+                          "costPrice": answers["costPrice-" + meal['mealId']],
+                          "currentQuantity": answers["meals_qnt"],
+                          "lowestQuantity": answers["meals_lowest_qnt"]
+                          }, selected_meals))
     utils.menu_state['meals'] = filled_selected_meals
     return register_menu.build_register_menu()

@@ -20,7 +20,8 @@ def build_main_menu() -> str:
     utils.build_menu_header()
     answers = inquirer.prompt(
         [inquirer.List(main_menu_key,
-                       message=reader.read_text("menu_choose_action"),
+                       message=reader.read_text(
+                           "menu_choose_action"),
                        choices=main_menu_choices.values())],
         theme=GreenPassion())
     answer = answers[main_menu_key]
