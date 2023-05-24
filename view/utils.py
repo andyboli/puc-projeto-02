@@ -8,11 +8,9 @@ from view import utils
 menu_state = {
     'meals': [],
     'parameters': {},
-    'transactions': {},
+    'monthly_transactions': {},
     'created': True
 }
-
-mocked_data = None
 
 
 def build_menu_header():
