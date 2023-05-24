@@ -178,7 +178,7 @@ FROM transaction;
 SELECT * FROM client;
 
 #14 Visualizar refeições mais e menos pedidas por período.
-SELECT om.mealId, m.name, SUM (om.quantity) as total_quantity
+SELECT om.mealId, m.name, SUM(om.quantity) as total_quantity
 FROM `order_meal` as om 
 INNER JOIN `meal` as m
 	ON om.mealId = m.mealId
@@ -205,6 +205,3 @@ WHERE o.date BETWEEN '2023-05-01 00:00:00' AND '2023-05-31 00:00:00'
 GROUP BY c.name, c.CPF
 ORDER BY value_purchases DESC
 LIMIT 10;
-    
-
-
