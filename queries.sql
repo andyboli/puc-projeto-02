@@ -130,9 +130,9 @@ CREATE TABLE IF NOT EXISTS `online_restaurant_management`.`transaction` (
   `order_orderId` INT,
   `stock_order_stockOrderId` INT,
   PRIMARY KEY (`transactionId`),
-  FOREIGN KEY (`order_orderId`)
+  FOREIGN KEY (`orderId`)
 	REFERENCES  `online_restaurant_management`.`order` (`orderId`),
-  FOREIGN KEY (`stock_order_stockOrderId`)
+  FOREIGN KEY (`stockOrderId`)
     REFERENCES  `online_restaurant_management`.`stock_order` (`stockOrderId`));
 
 ####### REQUISITO FUNCIONAL ########
